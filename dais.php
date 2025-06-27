@@ -1,34 +1,16 @@
 <?php
 session_start();
 
-// Initieer als keep-array nog niet bestaat
-if (!isset($_SESSION["keep"])) {
+if (!isset($_SESSION["keep"])){
     $_SESSION["keep"] = [];
 }
-
 $rollsLeft = 3;
-
-// Verwerk formulier als het is verzonden
-// Haal de keep-array op uit het formulier
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $_SESSION["keep"] = isset($_POST["keep"]) ? $_POST["keep"] : [];
-    $rollsLeft = $_POST['rollsLeft'] - 1; // verminder worpen
+if ($_SERVER["REQUEST_METHOD"]==="POST"){
+    $_SESSION["keep"]= isset($_POST["keep"]) ? $_POST["keep"] :[];
+    $rollsLeft = $_POST['rollsLeft'] -1;
 }
+$dais= [];
 
-// Genereer de dobbelstenen
-// Als deze NIET vastgehouden wordt, gooi hem opnieuw
-// Als wel vastgehouden, bewaar vorige waarde of stel een dummy in
-$dias = [];
-for ($i = 0; $i < 5; $i++) {
-    if (!in_array($i, $_SESSION["keep"])) {
-        $dias[$i] = rand(1, 6);
-    } else {
-        $dias[$i] = isset($_SESSION["dice"][$i]) ? $_SESSION["dice"][$i] : 1;
-    }
-}
-
-$_SESSION["dice"] = $dias;
-// Sla de nieuwe waarden op
 ?>
 
 <!DOCTYPE html>
