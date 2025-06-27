@@ -14,9 +14,8 @@ for($i = 0 ; $i <5 ;$i++){
     if(!in_array($i, $_SESSION['keep'])){
         $dais[$i] = rand(1,6);
     }else{
-        $dais[$i]= isset($_SESSION[$dais][$i]) ? $_SESSION[$dais][$i] : 1;
+        $dais[$i] = isset($_SESSION["dais"][$i]) ? $_SESSION["dais"][$i] : 1;
     }
-
 }
 $_SESSION["dais"] = $dais;
 ?>
